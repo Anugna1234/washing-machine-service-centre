@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Washing Machine Repair Service – Fast & Reliable</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:   #0B2E5E;
+    --blue:   #1360CE;
+    --sky:    #3A8EF6;
+    --accent: #FF6B35;
+    --white:  #FFFFFF;
+    --grey:   #F4F7FC;
+    --muted:  #6B7A99;
+    --dark:   #0D1B2A;
+    --card-shadow: 0 8px 32px rgba(19,96,206,0.12);
+    --radius: 16px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; color: var(--dark); background: var(--white); overflow-x: hidden; }
+  h1,h2,h3,h4 { font-family: 'Sora', sans-serif; }
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; display: block; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    background: rgba(11,46,94,0.97); backdrop-filter: blur(12px);
+    padding: 0 5%; display: flex; align-items: center; justify-content: space-between;
+    height: 68px; box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; }
+  .nav-logo-icon {
+    width: 42px; height: 42px;
+    background: linear-gradient(135deg, var(--sky), var(--blue));
+    border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px;
+  }
+  .nav-logo-text { color: var(--white); }
+  .nav-logo-text .brand { font-family:'Sora',sans-serif; font-weight:700; font-size:15px; line-height:1.1; }
+  .nav-logo-text .tagline { font-size:11px; color:rgba(255,255,255,0.55); }
+  .nav-links { display:flex; gap:28px; list-style:none; }
+  .nav-links a { color:rgba(255,255,255,0.82); font-size:14px; font-weight:500; transition:color .2s; }
+  .nav-links a:hover { color:var(--sky); }
+  .nav-cta { background:var(--accent)!important; color:var(--white)!important; padding:8px 18px; border-radius:8px; font-weight:600!important; }
+  .nav-cta:hover { background:#e55a22!important; }
+  .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:4px; }
+  .hamburger span { display:block; width:24px; height:2px; background:var(--white); border-radius:2px; transition:all .3s; }
+  .mobile-menu { display:none; position:fixed; top:68px; left:0; right:0; background:var(--navy); z-index:999; padding:20px 5%; flex-direction:column; gap:0; }
+  .mobile-menu.open { display:flex; }
+  .mobile-menu a { color:rgba(255,255,255,0.88); font-size:16px; font-weight:500; padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.08); }
+
+  /* HERO */
+  #home { min-height:100vh; position:relative; display:flex; flex-direction:column; justify-content:flex-end; overflow:hidden; }
+  .hero-bg { position:absolute; inset:0; background:url('https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=1600&q=80') center/cover no-repeat; filter:brightness(0.32); }
+  .hero-overlay { position:absolute; inset:0; background:linear-gradient(135deg,rgba(11,46,94,0.88) 0%,rgba(19,96,206,0.5) 60%,transparent 100%); }
+  .hero-content { position:relative; z-index:2; max-width:700px; padding:140px 5% 40px; }
+  .hero-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(58,142,246,0.2); border:1px solid rgba(58,142,246,0.4); color:#90CEFF; padding:6px 16px; border-radius:50px; font-size:13px; font-weight:600; letter-spacing:0.5px; margin-bottom:24px; }
+  .hero-badge::before { content:'●'; color:#4AE08A; font-size:10px; }
+  h1.hero-title { font-size:clamp(30px,5vw,56px); font-weight:800; color:var(--white); line-height:1.15; margin-bottom:20px; }
+  h1.hero-title em { color:var(--sky); font-style:normal; }
+  .hero-desc { font-size:clamp(15px,2vw,18px); color:rgba(255,255,255,0.78); line-height:1.75; margin-bottom:36px; max-width:540px; }
+  .hero-btns { display:flex; gap:16px; flex-wrap:wrap; }
+  .btn-call { display:inline-flex; align-items:center; gap:10px; background:var(--white); color:var(--navy); padding:14px 28px; border-radius:50px; font-family:'Sora',sans-serif; font-weight:700; font-size:16px; box-shadow:0 8px 30px rgba(255,255,255,0.15); transition:transform .2s,box-shadow .2s; }
+  .btn-call:hover { transform:translateY(-3px); box-shadow:0 14px 40px rgba(255,255,255,0.25); }
+  .btn-wa { display:inline-flex; align-items:center; gap:10px; background:#25D366; color:var(--white); padding:14px 28px; border-radius:50px; font-family:'Sora',sans-serif; font-weight:700; font-size:16px; box-shadow:0 8px 30px rgba(37,211,102,0.3); transition:transform .2s,box-shadow .2s; }
+  .btn-wa:hover { transform:translateY(-3px); box-shadow:0 14px 40px rgba(37,211,102,0.45); }
+  .hero-stats { position:relative; z-index:2; display:flex; gap:36px; flex-wrap:wrap; padding:28px 5% 60px; }
+  .stat { color:var(--white); }
+  .stat-num { font-family:'Sora',sans-serif; font-size:32px; font-weight:800; color:var(--sky); }
+  .stat-label { font-size:12px; color:rgba(255,255,255,0.55); margin-top:2px; }
+
+  /* SECTIONS */
+  section { padding:80px 5%; }
+  .section-tag { display:inline-block; background:rgba(19,96,206,0.1); color:var(--blue); padding:5px 16px; border-radius:50px; font-size:13px; font-weight:600; letter-spacing:0.5px; margin-bottom:14px; }
+  .section-title { font-size:clamp(24px,4vw,40px); font-weight:800; color:var(--navy); margin-bottom:12px; line-height:1.2; }
+  .section-sub { font-size:16px; color:var(--muted); max-width:520px; line-height:1.65; margin-bottom:48px; }
+  .text-center { text-align:center; }
+  .text-center .section-sub { margin:0 auto 48px; }
+
+  /* SERVICES */
+  #services { background:var(--grey); }
+  .services-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:20px; }
+  .service-card { background:var(--white); border-radius:var(--radius); padding:28px 24px; box-shadow:var(--card-shadow); transition:transform .25s,box-shadow .25s; position:relative; overflow:hidden; }
+  .service-card::after { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--blue),var(--sky)); opacity:0; transition:opacity .25s; }
+  .service-card:hover { transform:translateY(-5px); box-shadow:0 18px 48px rgba(19,96,206,0.2); }
+  .service-card:hover::after { opacity:1; }
+  .svc-icon { width:54px; height:54px; background:linear-gradient(135deg,rgba(19,96,206,0.09),rgba(58,142,246,0.14)); border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:26px; margin-bottom:16px; }
+  .svc-title { font-family:'Sora',sans-serif; font-weight:700; font-size:16px; margin-bottom:8px; color:var(--navy); }
+  .svc-desc { font-size:14px; color:var(--muted); line-height:1.6; }
+
+  /* WHY US */
+  #why { background:linear-gradient(135deg,var(--navy) 0%,#1a4080 100%); color:var(--white); }
+  #why .section-title { color:var(--white); }
+  #why .section-sub { color:rgba(255,255,255,0.65); }
+  #why .section-tag { background:rgba(255,255,255,0.1); color:#90C9FF; }
+  .why-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:24px; }
+  .why-card { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:var(--radius); padding:28px; transition:background .2s,transform .2s; }
+  .why-card:hover { background:rgba(255,255,255,0.13); transform:translateY(-3px); }
+  .why-icon { font-size:36px; margin-bottom:14px; }
+  .why-title { font-family:'Sora',sans-serif; font-weight:700; font-size:17px; margin-bottom:8px; }
+  .why-desc { font-size:14px; color:rgba(255,255,255,0.62); line-height:1.6; }
+
+  /* BRANDS */
+  #brands { background:var(--white); }
+  .brands-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:20px; }
+  .brand-card { border:2px solid #E8EDF5; border-radius:var(--radius); padding:24px 16px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; transition:border-color .2s,box-shadow .2s,transform .2s; background:var(--white); }
+  .brand-card:hover { border-color:var(--sky); box-shadow:0 8px 28px rgba(19,96,206,0.14); transform:translateY(-4px); }
+  .brand-logo-wrap { width:100px; height:52px; display:flex; align-items:center; justify-content:center; }
+  .brand-name { font-family:'Sora',sans-serif; font-weight:700; font-size:14px; color:var(--navy); }
+
+  /* REVIEWS */
+  #reviews { background:var(--grey); }
+  .reviews-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:24px; }
+  .review-card { background:var(--white); border-radius:var(--radius); padding:28px; box-shadow:var(--card-shadow); position:relative; transition:transform .2s; }
+  .review-card:hover { transform:translateY(-4px); }
+  .review-card::before { content:'"'; font-family:'Sora',sans-serif; font-size:90px; line-height:1; color:rgba(19,96,206,0.07); position:absolute; top:8px; right:18px; }
+  .stars { color:#F5A623; font-size:18px; margin-bottom:14px; letter-spacing:2px; }
+  .review-text { font-size:15px; color:#3D4A60; line-height:1.75; margin-bottom:18px; font-style:italic; }
+  .reviewer { display:flex; align-items:center; gap:12px; }
+  .reviewer-avatar { width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,var(--blue),var(--sky)); display:flex; align-items:center; justify-content:center; color:var(--white); font-family:'Sora',sans-serif; font-weight:700; font-size:16px; flex-shrink:0; }
+  .reviewer-name { font-family:'Sora',sans-serif; font-weight:700; font-size:15px; color:var(--navy); }
+  .reviewer-location { font-size:12px; color:var(--muted); }
+
+  /* CONTACT */
+  #contact { background:var(--white); }
+  .contact-wrap { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start; }
+  .contact-info h3 { font-family:'Sora',sans-serif; font-weight:700; font-size:22px; color:var(--navy); margin-bottom:24px; }
+  .info-item { display:flex; align-items:flex-start; gap:14px; margin-bottom:22px; }
+  .info-icon { width:46px; height:46px; border-radius:12px; flex-shrink:0; background:rgba(19,96,206,0.09); display:flex; align-items:center; justify-content:center; font-size:21px; }
+  .info-label { font-size:12px; color:var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:0.5px; }
+  .info-value { font-size:16px; color:var(--navy); font-weight:600; margin-top:3px; }
+  .btn-wa-lg { display:inline-flex; align-items:center; gap:10px; background:#25D366; color:var(--white); padding:14px 28px; border-radius:50px; font-family:'Sora',sans-serif; font-weight:700; font-size:16px; margin-top:10px; transition:transform .2s,box-shadow .2s; box-shadow:0 6px 24px rgba(37,211,102,0.3); }
+  .btn-wa-lg:hover { transform:translateY(-2px); box-shadow:0 12px 36px rgba(37,211,102,0.45); }
+  .contact-img { margin-top:28px; border-radius:16px; overflow:hidden; box-shadow:var(--card-shadow); }
+  .contact-img img { width:100%; height:220px; object-fit:cover; }
+  .contact-form { background:var(--grey); border-radius:20px; padding:36px; }
+  .contact-form h3 { font-family:'Sora',sans-serif; font-weight:700; font-size:22px; color:var(--navy); margin-bottom:24px; }
+  .form-group { margin-bottom:18px; }
+  .form-group label { display:block; font-size:13px; font-weight:600; color:var(--navy); margin-bottom:6px; }
+  .form-group input, .form-group textarea, .form-group select { width:100%; padding:12px 16px; border:2px solid #DDE3F0; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:15px; color:var(--dark); background:var(--white); transition:border-color .2s,box-shadow .2s; outline:none; }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color:var(--blue); box-shadow:0 0 0 3px rgba(19,96,206,0.1); }
+  .form-group textarea { height:110px; resize:vertical; }
+  .btn-submit { width:100%; padding:14px; background:linear-gradient(135deg,var(--blue),var(--sky)); color:var(--white); border:none; border-radius:50px; font-family:'Sora',sans-serif; font-weight:700; font-size:16px; cursor:pointer; transition:opacity .2s,transform .2s; box-shadow:0 6px 24px rgba(19,96,206,0.35); }
+  .btn-submit:hover { opacity:0.88; transform:translateY(-2px); }
+  .form-success { display:none; text-align:center; padding:18px; background:rgba(74,224,138,0.1); border-radius:10px; border:1px solid rgba(74,224,138,0.35); color:#1a7a3a; font-weight:600; margin-top:16px; font-size:15px; }
+
+  /* FLOATING */
+  .floating-btns { position:fixed; bottom:24px; right:20px; display:flex; flex-direction:column; gap:12px; z-index:2000; }
+  .float-btn { width:58px; height:58px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:26px; box-shadow:0 6px 24px rgba(0,0,0,0.25); transition:transform .2s,box-shadow .2s; cursor:pointer; position:relative; }
+  .float-btn:hover { transform:scale(1.12); }
+  .float-call { background:var(--blue); }
+  .float-wa { background:#25D366; }
+  .float-label { position:absolute; right:68px; background:var(--dark); color:var(--white); padding:5px 12px; border-radius:6px; font-size:12px; font-weight:600; white-space:nowrap; opacity:0; pointer-events:none; transition:opacity .2s; font-family:'DM Sans',sans-serif; }
+  .float-btn:hover .float-label { opacity:1; }
+
+  /* FOOTER */
+  footer { background:var(--dark); color:rgba(255,255,255,0.72); padding:52px 5% 24px; }
+  .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr; gap:40px; margin-bottom:40px; }
+  .footer-brand .brand { font-family:'Sora',sans-serif; font-weight:700; font-size:18px; color:var(--white); margin-bottom:10px; }
+  .footer-brand p { font-size:14px; line-height:1.75; }
+  .footer-col h4 { font-family:'Sora',sans-serif; color:var(--white); font-size:15px; margin-bottom:16px; }
+  .footer-col ul { list-style:none; }
+  .footer-col ul li { margin-bottom:10px; }
+  .footer-col ul a { font-size:14px; color:rgba(255,255,255,0.58); transition:color .2s; }
+  .footer-col ul a:hover { color:var(--sky); }
+  .footer-contact-item { display:flex; align-items:center; gap:8px; margin-bottom:10px; font-size:14px; }
+  .footer-bottom { border-top:1px solid rgba(255,255,255,0.08); padding-top:22px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-size:13px; }
+  .footer-wa { display:inline-flex; align-items:center; gap:8px; background:#25D366; color:var(--white); padding:8px 18px; border-radius:50px; font-size:13px; font-weight:600; transition:opacity .2s; margin-top:12px; }
+  .footer-wa:hover { opacity:0.85; }
+
+  /* REVEAL */
+  .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.55s ease,transform 0.55s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+
+  /* RESPONSIVE */
+  @media(max-width:900px){
+    .contact-wrap { grid-template-columns:1fr; }
+    .footer-grid { grid-template-columns:1fr 1fr; }
+    .nav-links { display:none; }
+    .hamburger { display:flex; }
+  }
+  @media(max-width:600px){
+    section { padding:60px 4%; }
+    .footer-grid { grid-template-columns:1fr; gap:28px; }
+    .footer-bottom { flex-direction:column; text-align:center; }
+    .hero-stats { gap:20px; padding:20px 4% 50px; }
+    .hero-btns { flex-direction:column; }
+    .btn-call,.btn-wa { justify-content:center; }
+    .contact-form { padding:24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-icon">🔧</div>
+    <div class="nav-logo-text">
+      <span class="brand">WashFix</span>
+      <span class="tagline">Repair Service</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#brands">Brands</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta">📞 Contact Us</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home" onclick="closeMobile()">Home</a>
+  <a href="#services" onclick="closeMobile()">Services</a>
+  <a href="#brands" onclick="closeMobile()">Brands</a>
+  <a href="#reviews" onclick="closeMobile()">Reviews</a>
+  <a href="#contact" onclick="closeMobile()">Contact Us</a>
+</div>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">✅ Same-Day Service Available</div>
+    <h1 class="hero-title">Fast &amp; Reliable<br><em>Washing Machine</em><br>Repair Service</h1>
+    <p class="hero-desc">We provide professional washing machine repair services at your doorstep with experienced technicians and affordable pricing.</p>
+    <div class="hero-btns">
+      <a href="tel:+917989311823" class="btn-call">📞 Call Now</a>
+      <a href="https://wa.me/917989311823" target="_blank" class="btn-wa">💬 WhatsApp Now</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">5000+</div><div class="stat-label">Repairs Done</div></div>
+    <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Years Experience</div></div>
+    <div class="stat"><div class="stat-num">4.9 ★</div><div class="stat-label">Customer Rating</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Satisfaction</div></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="text-center reveal">
+    <div class="section-tag">What We Fix</div>
+    <h2 class="section-title">Services Provided</h2>
+    <p class="section-sub">From minor glitches to major overhauls — our certified technicians handle all types of washing machine issues.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal"><div class="svc-icon">⚡</div><div class="svc-title">Not Starting</div><div class="svc-desc">Machine won't power on or fails to start its cycle — we diagnose and fix it fast.</div></div>
+    <div class="service-card reveal"><div class="svc-icon">🌀</div><div class="svc-title">Drum Not Spinning</div><div class="svc-desc">Drum stops mid-cycle or doesn't rotate. We repair belts, bearings and motors.</div></div>
+    <div class="service-card reveal"><div class="svc-icon">💧</div><div class="svc-title">Water Leakage</div><div class="svc-desc">Leaks from hose, door seal or pump — we stop leaks and prevent water damage.</div></div>
+    <div class="service-card reveal"><div class="svc-icon">📳</div><div class="svc-title">Vibration Problem</div><div class="svc-desc">Excessive shaking during spin cycle. We level and fix suspension and balance issues.</div></div>
+    <div class="service-card reveal"><div class="svc-icon">🔊</div><div class="svc-title">Noise During Operation</div><div class="svc-desc">Banging, grinding or squealing sounds fixed — bearings, drum spider and more.</div></div>
+    <div class="service-card reveal"><div class="svc-icon">🚿</div><div class="svc-title">Drainage Issues</div><div class="svc-desc">Machine not draining properly? Clogged pump filters and hoses cleared quickly.</div></div>
+    <div class="service-card reveal"><div class="svc-icon">⚙️</div><div class="svc-title">Motor Repair</div><div class="svc-desc">Motor burnout or failure — serviced or replaced with high-quality compatible parts.</div></div>
+    <div class="service-card reveal"><div class="svc-icon">🖥️</div><div class="svc-title">PCB / Control Board</div><div class="svc-desc">Electronic faults, error codes, display issues and control board repair covered.</div></div>
+    <div class="service-card reveal"><div class="svc-icon">🔒</div><div class="svc-title">Door Lock Problems</div><div class="svc-desc">Door won't open or lock — interlock mechanism repaired or replaced efficiently.</div></div>
+    <div class="service-card reveal"><div class="svc-icon">🛠️</div><div class="svc-title">Installation &amp; Maintenance</div><div class="svc-desc">New machine setup, annual servicing and preventive maintenance packages available.</div></div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="text-center reveal">
+    <div class="section-tag">Why Choose Us</div>
+    <h2 class="section-title">The WashFix Advantage</h2>
+    <p class="section-sub">Trusted by thousands of households for fast, reliable and affordable repairs across Hyderabad.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal"><div class="why-icon">🏠</div><div class="why-title">Doorstep Service</div><div class="why-desc">We come to your home at your preferred time — no need to carry the machine anywhere.</div></div>
+    <div class="why-card reveal"><div class="why-icon">⏰</div><div class="why-title">Same-Day Repair</div><div class="why-desc">Most repairs completed the same day so your routine gets back to normal quickly.</div></div>
+    <div class="why-card reveal"><div class="why-icon">💰</div><div class="why-title">Transparent Pricing</div><div class="why-desc">No hidden charges. Get a full quote before any work begins — ever.</div></div>
+    <div class="why-card reveal"><div class="why-icon">🎓</div><div class="why-title">Certified Technicians</div><div class="why-desc">Experienced, background-verified technicians for all major washing machine brands.</div></div>
+    <div class="why-card reveal"><div class="why-icon">🔁</div><div class="why-title">30-Day Warranty</div><div class="why-desc">All repairs include a 30-day service warranty for complete peace of mind.</div></div>
+    <div class="why-card reveal"><div class="why-icon">📱</div><div class="why-title">Easy Booking</div><div class="why-desc">Book via call or WhatsApp — quick response and instant confirmation guaranteed.</div></div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<section id="brands">
+  <div class="text-center reveal">
+    <div class="section-tag">All Major Brands</div>
+    <h2 class="section-title">Brands We Service</h2>
+    <p class="section-sub">Our technicians are trained and experienced with all leading washing machine brands.</p>
+  </div>
+  <div class="brands-grid">
+    <div class="brand-card reveal">
+      <div class="brand-logo-wrap">
+        <svg viewBox="0 0 100 52" xmlns="http://www.w3.org/2000/svg" style="width:90px">
+          <circle cx="50" cy="26" r="24" fill="#A50034"/>
+          <text x="50" y="33" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="18" fill="white">LG</text>
+        </svg>
+      </div>
+      <div class="brand-name">LG</div>
+    </div>
+    <div class="brand-card reveal">
+      <div class="brand-logo-wrap">
+        <svg viewBox="0 0 120 52" xmlns="http://www.w3.org/2000/svg" style="width:110px">
+          <rect width="120" height="52" rx="6" fill="#1428A0"/>
+          <text x="60" y="34" text-anchor="middle" font-family="Arial,sans-serif" font-weight="bold" font-size="15" fill="white" letter-spacing="1">SAMSUNG</text>
+        </svg>
+      </div>
+      <div class="brand-name">Samsung</div>
+    </div>
+    <div class="brand-card reveal">
+      <div class="brand-logo-wrap">
+        <svg viewBox="0 0 100 52" xmlns="http://www.w3.org/2000/svg" style="width:90px">
+          <rect width="100" height="52" rx="6" fill="#003087"/>
+          <text x="50" y="36" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="22" fill="white">IFB</text>
+        </svg>
+      </div>
+      <div class="brand-name">IFB</div>
+    </div>
+    <div class="brand-card reveal">
+      <div class="brand-logo-wrap">
+        <svg viewBox="0 0 110 52" xmlns="http://www.w3.org/2000/svg" style="width:100px">
+          <rect width="110" height="52" rx="6" fill="#E20015"/>
+          <text x="55" y="36" text-anchor="middle" font-family="Arial,sans-serif" font-weight="bold" font-size="18" fill="white">BOSCH</text>
+        </svg>
+      </div>
+      <div class="brand-name">Bosch</div>
+    </div>
+    <div class="brand-card reveal">
+      <div class="brand-logo-wrap">
+        <svg viewBox="0 0 120 52" xmlns="http://www.w3.org/2000/svg" style="width:110px">
+          <rect width="120" height="52" rx="6" fill="#009999"/>
+          <text x="60" y="35" text-anchor="middle" font-family="Arial,sans-serif" font-weight="bold" font-size="16" fill="white">SIEMENS</text>
+        </svg>
+      </div>
+      <div class="brand-name">Siemens</div>
+    </div>
+    <div class="brand-card reveal">
+      <div class="brand-logo-wrap">
+        <svg viewBox="0 0 120 52" xmlns="http://www.w3.org/2000/svg" style="width:110px">
+          <rect width="120" height="52" rx="6" fill="#00539F"/>
+          <text x="60" y="35" text-anchor="middle" font-family="Arial,sans-serif" font-weight="bold" font-size="13" fill="white">WHIRLPOOL</text>
+        </svg>
+      </div>
+      <div class="brand-name">Whirlpool</div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" style="background:var(--grey)">
+  <div class="text-center reveal">
+    <div class="section-tag">Customer Reviews</div>
+    <h2 class="section-title">What Our Customers Say</h2>
+    <p class="section-sub">Real feedback from real customers across Hyderabad and surrounding areas.</p>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card reveal">
+      <div class="stars">★★★★★</div>
+      <div class="review-text">"Very quick service. My LG washing machine was repaired within one hour. The technician was professional and explained everything clearly."</div>
+      <div class="reviewer"><div class="reviewer-avatar">RK</div><div><div class="reviewer-name">Rajesh Kumar</div><div class="reviewer-location">Secunderabad</div></div></div>
+    </div>
+    <div class="review-card reveal">
+      <div class="stars">★★★★★</div>
+      <div class="review-text">"Professional technician and very reasonable price. Samsung top-load machine had a drainage issue — fixed perfectly the same day. Highly recommend!"</div>
+      <div class="reviewer"><div class="reviewer-avatar">SR</div><div><div class="reviewer-name">Suresh Reddy</div><div class="reviewer-location">Kukatpally</div></div></div>
+    </div>
+    <div class="review-card reveal">
+      <div class="stars">★★★★★</div>
+      <div class="review-text">"Booked via WhatsApp and the technician arrived within 2 hours. My IFB machine drum was not spinning — repaired with 30-day warranty. Excellent!"</div>
+      <div class="reviewer"><div class="reviewer-avatar">PM</div><div><div class="reviewer-name">Priya Mehta</div><div class="reviewer-location">Banjara Hills</div></div></div>
+    </div>
+    <div class="review-card reveal">
+      <div class="stars">★★★★★</div>
+      <div class="review-text">"Very affordable compared to the company service centre. Whirlpool machine had a PCB fault — repaired on the same day. Will definitely call again!"</div>
+      <div class="reviewer"><div class="reviewer-avatar">VN</div><div><div class="reviewer-name">Venkat Naidu</div><div class="reviewer-location">Ameerpet</div></div></div>
+    </div>
+    <div class="review-card reveal">
+      <div class="stars">★★★★☆</div>
+      <div class="review-text">"Good service overall. My Bosch machine was making a loud noise during spin cycle — bearings replaced quickly. Polite technician and fair charges."</div>
+      <div class="reviewer"><div class="reviewer-avatar">AS</div><div><div class="reviewer-name">Anita Sharma</div><div class="reviewer-location">Madhapur</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="text-center reveal">
+    <div class="section-tag">Get In Touch</div>
+    <h2 class="section-title">Contact Us</h2>
+    <p class="section-sub">Book a repair, get a quote, or just ask a question — we're always happy to help!</p>
+  </div>
+  <div class="contact-wrap">
+    <div class="contact-info reveal">
+      <h3>📍 Reach Us Directly</h3>
+      <div class="info-item">
+        <div class="info-icon">📞</div>
+        <div>
+          <div class="info-label">Phone Number</div>
+          <div class="info-value"><a href="tel:+917989311823" style="color:var(--blue)">+91 79893 11823</a></div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">🕘</div>
+        <div>
+          <div class="info-label">Working Hours</div>
+          <div class="info-value">Monday – Sunday, 8:00 AM – 8:00 PM</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">📍</div>
+        <div>
+          <div class="info-label">Service Area</div>
+          <div class="info-value">Home Repair – Hyderabad &amp; Surrounding Areas</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">⚡</div>
+        <div>
+          <div class="info-label">Response Time</div>
+          <div class="info-value">Usually within 1–2 hours of booking</div>
+        </div>
+      </div>
+      <a href="https://wa.me/917989311823" target="_blank" class="btn-wa-lg">💬 Chat on WhatsApp</a>
+      <div class="contact-img">
+        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=700&q=80" alt="Technician repairing a washing machine at home">
+      </div>
+    </div>
+    <div class="contact-form reveal">
+      <h3>📝 Book a Repair</h3>
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="fname" placeholder="Enter your full name">
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" id="fphone" placeholder="+91 XXXXX XXXXX">
+      </div>
+      <div class="form-group">
+        <label>Machine Brand</label>
+        <select id="fbrand">
+          <option value="">— Select Brand —</option>
+          <option>LG</option><option>Samsung</option><option>IFB</option>
+          <option>Bosch</option><option>Siemens</option><option>Whirlpool</option><option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Describe the Problem</label>
+        <textarea id="fmsg" placeholder="e.g. My machine is not spinning / making noise during operation…"></textarea>
+      </div>
+      <button class="btn-submit" onclick="submitForm()">🔧 Book Repair Now</button>
+      <div class="form-success" id="formSuccess">✅ Thank you! We'll contact you shortly to confirm your booking.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FLOATING BUTTONS -->
+<div class="floating-btns">
+  <a href="https://wa.me/917989311823" target="_blank" class="float-btn float-wa" title="WhatsApp">
+    <span class="float-label">WhatsApp</span>💬
+  </a>
+  <a href="tel:+917989311823" class="float-btn float-call" title="Call Now">
+    <span class="float-label">Call Now</span>📞
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="brand">🔧 WashFix Repair Service</div>
+      <p>Professional washing machine repair at your doorstep. Fast, reliable and affordable service across Hyderabad and surrounding areas. All major brands serviced.</p>
+      <a href="https://wa.me/917989311823" target="_blank" class="footer-wa">💬 WhatsApp Us</a>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Our Services</a></li>
+        <li><a href="#brands">Brands We Service</a></li>
+        <li><a href="#reviews">Customer Reviews</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <div class="footer-contact-item">📞 <a href="tel:+917989311823" style="color:rgba(255,255,255,0.6)">+91 79893 11823</a></div>
+      <div class="footer-contact-item">💬 <a href="https://wa.me/917989311823" target="_blank" style="color:rgba(255,255,255,0.6)">WhatsApp Chat</a></div>
+      <div class="footer-contact-item">📍 Hyderabad, Telangana</div>
+      <div class="footer-contact-item">🕘 Mon – Sun, 8AM – 8PM</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Washing Machine Repair Service. All rights reserved.</span>
+    <a href="https://wa.me/917989311823" target="_blank" class="footer-wa" style="margin-top:0">💬 Book via WhatsApp</a>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+  function closeMobile(){document.getElementById('mobileMenu').classList.remove('open');}
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry,i) => {
+      if(entry.isIntersecting){
+        setTimeout(()=>entry.target.classList.add('visible'), i*55);
+        observer.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+  // Stagger grid children
+  ['services-grid','why-grid','brands-grid','reviews-grid'].forEach(cls=>{
+    const grid=document.querySelector('.'+cls);
+    if(grid) grid.querySelectorAll('.reveal').forEach((c,i)=>{c.style.transitionDelay=(i*55)+'ms';});
+  });
+
+  // Form
+  function submitForm(){
+    const name=document.getElementById('fname').value.trim();
+    const phone=document.getElementById('fphone').value.trim();
+    if(!name||!phone){alert('Please enter your name and phone number.');return;}
+    document.getElementById('formSuccess').style.display='block';
+    ['fname','fphone','fmsg'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('fbrand').value='';
+    setTimeout(()=>document.getElementById('formSuccess').style.display='none',5000);
+  }
+
+  // Nav scroll highlight
+  const sectionEls=document.querySelectorAll('section[id]');
+  window.addEventListener('scroll',()=>{
+    const sy=window.scrollY+100;
+    sectionEls.forEach(s=>{
+      if(sy>=s.offsetTop&&sy<s.offsetTop+s.offsetHeight){
+        document.querySelectorAll('.nav-links a').forEach(a=>a.style.color='');
+        const lnk=document.querySelector(`.nav-links a[href="#${s.id}"]`);
+        if(lnk)lnk.style.color='var(--sky)';
+      }
+    });
+  });
+</script>
+</body>
+</html>
